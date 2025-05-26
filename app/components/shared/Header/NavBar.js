@@ -9,6 +9,7 @@ const NavBar = () => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -17,6 +18,14 @@ const NavBar = () => {
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const menuItems = [
@@ -127,40 +136,48 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 bg-[#002561] text-white font-['TT_Hoves_Pro'] shadow-[0_3px_8px_#0000005C]">
+        <nav
+            className={`
+                ${isScrolled ? 'fixed top-0 left-0 w-full z-50' : ''}
+                bg-[#002561] text-white font-['TT_Hoves_Pro'] shadow-[0_3px_8px_#0000005C]
+                transition-all duration-500 ease-in-out
+                lg:h-[12vh]
+            `}
+            style={{ minHeight: 'unset' }}
+        >
             {/* Top Navigation Bar */}
-            <div className="grid lg:grid-cols-[15%,85%] grid-cols-[40%,60%]">
-                <div className="flex items-center justify-center border-r border-dashed border-white/20 lg:p-0 p-2">
+            <div className="grid lg:grid-cols-[15%,85%] grid-cols-[40%,60%] lg:h-full items-center">
+                <div className="flex items-center justify-center border-r border-dashed border-white/20 lg:p-0 p-2 h-full">
                     <Link href="/">
                         <Image
                             src="/ayra-logo.svg"
                             alt="AYRA Logo"
                             width={120}
                             height={40}
+                            className='h-full w-full'
                         />
                     </Link>
                 </div>
 
                 {/* Desktop Menu */}
-                <div className="hidden lg:flex flex-col border-l border-dashed border-white/20">
-                    <div className="grid grid-cols-7 gap-4 border-b border-dashed border-white/20 lg:px-16 py-2">
-                        <div className="flex items-center space-x-6 gap-5 col-span-4">
+                <div className="hidden lg:flex flex-col border-l border-dashed border-white/20 h-full justify-center">
+                    <div className="grid grid-cols-7 gap-4 border-b border-dashed border-white/20 lg:px-16 py-2 h-1/2 items-center">
+                        <div className="flex items-center space-x-6 gap-5 col-span-4 h-full">
                             <Link
                                 href="/resources"
-                                className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
+                                className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full"
                             >
                                 Resources
                             </Link>
                             <Link
                                 href="/news-&-events"
-                                className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
+                                className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full"
                             >
                                 News & Events
                             </Link>
                         </div>
-
-                        <div className="flex items-center justify-between space-x-6 col-span-3">
-                            <div className="relative">
+                        <div className="flex items-center justify-between space-x-6 col-span-3 h-full">
+                            <div className="relative h-full flex items-center">
                                 <input
                                     type="text"
                                     placeholder="Search..."
@@ -168,36 +185,34 @@ const NavBar = () => {
                                 />
                                 <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70" />
                             </div>
-
-                            <div className='flex items-center justify-around space-x-6'>
+                            <div className='flex items-center justify-around space-x-6 h-full'>
                                 <Link
                                     href="/apply-now"
-                                    className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
+                                    className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full"
                                 >
                                     Apply Now
                                 </Link>
                                 <Link
                                     href="/contact-us"
-                                    className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
+                                    className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full"
                                 >
                                     Contact us
                                 </Link>
                             </div>
                         </div>
                     </div>
-                    <div className='lg:px-16 py-2'>
-                        <ul className="flex space-x-8  flex flex-row justify-between items-center">
+                    <div className='lg:px-16 py-2 h-1/2 flex items-center'>
+                        <ul className="flex space-x-8 flex flex-row justify-between items-center h-full">
                             {menuItems.map((item, index) => (
                                 <li
                                     key={index}
-                                    className="relative group"
+                                    className="relative group h-full flex items-center"
                                     onMouseEnter={() => setActiveSubmenu(index)}
                                     onMouseLeave={() => setActiveSubmenu(null)}
                                 >
-                                    <button className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal">
+                                    <button className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full">
                                         {item.name}
                                     </button>
-
                                     {activeSubmenu === index && (
                                         <div className="absolute top-full left-0 w-48 bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C] py-2 z-50">
                                             {renderSubmenu(item.submenu)}

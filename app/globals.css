@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SCHABO Condensed';
+  src: url('/font/SCHABO-Condensed.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   /* background: var(--background);
   color: var(--foreground); */
@@ -42,4 +49,8 @@ p {
   height: 50px;
   width: 50px;
   background-color: #555;
+}
+
+.font-schabo {
+  font-family: 'SCHABO Condensed', sans-serif;
 }
