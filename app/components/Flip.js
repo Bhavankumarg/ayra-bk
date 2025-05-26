@@ -143,9 +143,9 @@ const FoldOnHoverHorizontal = () => {
           style={{
             clipPath: "ellipse(100% 50% at 50% 0%)",
           }}
-        ></div>
+        >
+        </div>
       </div>
-
     </div>
   )
 }
