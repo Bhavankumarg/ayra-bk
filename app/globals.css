@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'TT Hoves Pro Condensed Light';
+  src: url('/font/TT Hoves Pro Trial Condensed Light.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   /* background: var(--background);
   color: var(--foreground); */
@@ -53,4 +60,23 @@ p {
 
 .font-schabo {
   font-family: 'SCHABO Condensed', sans-serif;
+}
+
+.font-tt-condensed-light {
+  font-family: 'TT Hoves Pro Condensed Light', sans-serif;
+}
+
+
+/* Shubham CSS code  Class*/
+
+/* campus page */
+/* dashed border */
+.bg-dashed-border {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #ccc,
+    #ccc 4px,
+    transparent 4px,
+    transparent 8px
+  );
 }
