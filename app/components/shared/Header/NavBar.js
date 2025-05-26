@@ -127,7 +127,7 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="bg-[#002561] text-white font-['TT_Hoves_Pro'] shadow-[0_3px_8px_#0000005C]">
+        <nav className="fixed top-0 left-0 w-full z-50 bg-[#002561] text-white font-['TT_Hoves_Pro'] shadow-[0_3px_8px_#0000005C]">
             {/* Top Navigation Bar */}
             <div className="grid lg:grid-cols-[15%,85%] grid-cols-[40%,60%]">
                 <div className="flex items-center justify-center border-r border-dashed border-white/20 lg:p-0 p-2">
