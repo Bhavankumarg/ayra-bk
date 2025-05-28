@@ -102,7 +102,9 @@ const NavBar = () => {
                         href={
                             parentName === 'Open Canvas'
                                 ? `/opencanvas/${item.toLowerCase().replace(/\s+/g, '-')}`
-                                : `/${item.toLowerCase().replace(/\s+/g, '-')}`
+                                : parentName === 'Admissions'
+                                    ? `/admissions/${item.toLowerCase().replace(/\s+/g, '-')}`
+                                    : `/${item.toLowerCase().replace(/\s+/g, '-')}`
                         }
                         className="block px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
                         onClick={() => {
@@ -215,6 +217,10 @@ const NavBar = () => {
                                     onMouseLeave={() => setActiveSubmenu(null)}
                                 >
                                     {item.name === 'Open Canvas' ? (
+                                        <span className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full cursor-default">
+                                            {item.name}
+                                        </span>
+                                    ) : item.name === 'Admissions' ? (
                                         <span className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full cursor-default">
                                             {item.name}
                                         </span>
