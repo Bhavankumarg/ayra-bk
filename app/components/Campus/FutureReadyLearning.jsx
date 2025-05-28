@@ -24,14 +24,14 @@ const futureReadyData = [
 
 const FutureReadyLearning = () => {
   return (
-    <div className="py-5 max-w-7xl mx-auto space-y-5 px-4 md:px-0">
+    <div className="py-5 container mx-auto space-y-5 px-4 md:px-0">
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#002561] text-center md:text-left">
         FUTURE-READY LEARNING SPACES
       </h1>
 
-      <ul className="flex flex-wrap justify-between gap-6">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {futureReadyData.map((item) => (
-          <li key={item.id} className="w-full sm:w-[48%] lg:w-[32%]">
+          <li key={item.id}>
             <div className="relative overflow-hidden shadow-lg">
               <Image
                 src={item.image}

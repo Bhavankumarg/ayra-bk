@@ -3,7 +3,7 @@ import React from "react"
 
 const DesignedForCommunity = () => {
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] max-w-7xl mx-auto my-4">
+    <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] container mx-auto my-4">
       {/* Background Image */}
       <Image
         src="/campus/design-banner02.png"
