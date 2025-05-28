@@ -1,10 +1,10 @@
 import React from "react"
-import CampusIndex from "../components/Campus/index"
+import Admissions from "../components/Admissions/index"
 
 const page = () => {
   return (
     <>
-      <CampusIndex />
+      <Admissions />
     </>
   )
 }
