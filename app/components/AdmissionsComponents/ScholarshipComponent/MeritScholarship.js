@@ -5,7 +5,7 @@ const Meritscholarship = () => {
   return (
     <>
       {/* Text and first image container */}
-      <div className="w-full flex flex-col items-center bg-gray-100 py-10">
+      <div className="w-full flex flex-col items-center bg-gray-100 py-10 md:px-0 px-4">
         <div className="relative w-full max-w-[800px] h-[200px]">
           <Image
             src="/admissions/scholarship/merit_scholarship.png"
@@ -26,12 +26,12 @@ const Meritscholarship = () => {
 
       {/* Second image with full width blue background */}
       <div className="w-full bg-[#002561] py-8 flex justify-center">
-        <div className="relative w-full max-w-[700px] h-[300px]">
+        <div className="relative w-full max-w-[700px] h-[300px] ">
           <Image
             src="/admissions/scholarship/merit_scholarship.png"
             alt="merit-scholarship"
             fill
-            className="object-contain"
+            className="object-contain md:px-0 px-4"
             priority
           />
         </div>
