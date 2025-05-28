@@ -108,10 +108,13 @@ const NavBar = () => {
                     } else {
                         href = `/admissions/${item.toLowerCase().replace(/\s+/g, '-')}`;
                     }
+                } else if (parentName === 'Focus Centre') {
+                    href = `/focus-centre/${item.toLowerCase().replace(/\s+/g, '-')}`;
                 } else {
                     href = `/${item.toLowerCase().replace(/\s+/g, '-')}`;
                 }
             }
+            const submenuKey = parentIndex !== null ? `${parentIndex}-${index}` : index;
             return (
                 <div key={index} className={`${level > 0 ? 'pl-4' : ''}`}>
                     {typeof item === 'string' ? (
@@ -131,19 +134,20 @@ const NavBar = () => {
                         <>
                             <button
                                 onClick={() => {
-                                    const newIndex = parentIndex !== null ? `${parentIndex}-${index}` : index;
-                                    setActiveSubmenu(activeSubmenu === newIndex ? null : newIndex);
+                                    setActiveSubmenu(activeSubmenu === submenuKey ? null : submenuKey);
                                 }}
                                 className="w-full text-left px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center justify-between"
                             >
                                 {item.name}
-                                <span className={`transform transition-transform ${activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) ? 'rotate-180' : ''}`}>
-                                    ▼
-                                </span>
+                                {parentName === 'Distinct for You' && item.name === 'Focus Centre' && item.submenu && item.submenu.length > 0 && (
+                                    <span className={`transform transition-transform ${activeSubmenu === submenuKey ? 'rotate-180' : ''}`}>
+                                        ▼
+                                    </span>
+                                )}
                             </button>
-                            {activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) && (
+                            {parentName === 'Distinct for You' && item.name === 'Focus Centre' && activeSubmenu === submenuKey && (
                                 <div className="bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C]">
-                                    {renderSubmenu(item.submenu, level + 1, index, item.name)}
+                                    {renderSubmenu(item.submenu, level + 1, submenuKey, item.name)}
                                 </div>
                             )}
                         </>
@@ -205,7 +209,7 @@ const NavBar = () => {
                             </div>
                             <div className='flex items-center justify-around space-x-6 h-full'>
                                 <Link
-                                    href="/apply-now"
+                                    href="/admissions/apply-now"
                                     className="hover:text-gray-300 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full"
                                 >
                                     Apply Now
@@ -298,7 +302,7 @@ const NavBar = () => {
                                     News & Events
                                 </Link>
                                 <Link
-                                    href="/apply-now"
+                                    href="/admissions/apply-now"
                                     className="block hover:text-gray-300 transition-colors text-[14px] leading-[27px] font-normal"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -323,11 +327,13 @@ const NavBar = () => {
                                         className="w-full text-left hover:text-gray-300 transition-colors text-[14px] leading-[27px] font-normal flex items-center justify-between"
                                     >
                                         {item.name}
-                                        <span className={`transform transition-transform ${activeSubmenu === index ? 'rotate-180' : ''}`}>
-                                            ▼
-                                        </span>
+                                        {item.submenu && item.submenu.length > 0 && (
+                                            <span className={`transform transition-transform ${activeSubmenu === index ? 'rotate-180' : ''}`}>
+                                                ▼
+                                            </span>
+                                        )}
                                     </button>
-                                    {activeSubmenu === index && (
+                                    {item.submenu && item.submenu.length > 0 && activeSubmenu === index && (
                                         <div className="pl-4 mt-2 space-y-2">
                                             {renderSubmenu(item.submenu, 1, index, item.name)}
                                         </div>

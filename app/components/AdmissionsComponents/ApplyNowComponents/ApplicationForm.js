@@ -6,7 +6,7 @@ import { Country, State } from "country-state-city";
 const CustomSelect = ({ label, options, onChange, value, error, innerRef }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
- 
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -27,11 +27,10 @@ const CustomSelect = ({ label, options, onChange, value, error, innerRef }) => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className={`w-full bg-[#fff] px-4 py-2 text-left flex justify-between items-center border ${
-            error
-              ? "border-red-500"
-              : "border-dashed border-[#A9B8D5] focus:outline-none"
-          }`}
+          className={`w-full bg-[#fff] px-4 py-2 text-left flex justify-between items-center border ${error
+            ? "border-red-500"
+            : "border-dashed border-[#A9B8D5] focus:outline-none"
+            }`}
         >
           <span className={`text-[#002561] ${!value && "text-[#002561]"}`}>
             {value || "Select"}
@@ -41,9 +40,8 @@ const CustomSelect = ({ label, options, onChange, value, error, innerRef }) => {
             src="/admissions/apply-now/down-arrow.svg"
             width={18}
             height={18}
-            className={`ml-2 transition-transform text-[#2050B1] ${
-              isOpen ? "rotate-180" : ""
-            }`}
+            className={`ml-2 transition-transform text-[#2050B1] ${isOpen ? "rotate-180" : ""
+              }`}
           />
         </button>
         {isOpen && (
@@ -294,11 +292,10 @@ export default function ApplicationForm() {
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.firstName
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.firstName
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.firstName}
               onChange={(e) => {
                 setFormData({ ...formData, firstName: e.target.value });
@@ -317,11 +314,10 @@ export default function ApplicationForm() {
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.lastName
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.lastName
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.lastName}
               onChange={(e) =>
                 setFormData({ ...formData, lastName: e.target.value })
@@ -338,11 +334,10 @@ export default function ApplicationForm() {
                   {["DD", "MM", "YYYY"][i]}
                 </label>
                 <select
-                  className={`w-full border ${
-                    formErrors[key]
-                      ? "border-red-500"
-                      : "border-dashed border-[#A9B8D5] focus:outline-none"
-                  } p-2`}
+                  className={`w-full border ${formErrors[key]
+                    ? "border-red-500"
+                    : "border-dashed border-[#A9B8D5] focus:outline-none"
+                    } p-2`}
                   value={formData[key]}
                   onChange={(e) =>
                     setFormData({ ...formData, [key]: e.target.value })
@@ -410,38 +405,37 @@ export default function ApplicationForm() {
             value={formData.gender}
             error={formErrors.gender}
           />
-         <div>
-              <label className="block font-bold uppercase">
-                Nationality
-              </label>
-              <select
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-                className="w-full border-dashed border-[#A9B8D5] border focus:outline-none p-2"
-              >
-                <option value="">Select a country</option>
-                {countries.map((country) => (
-                  <option key={country.isoCode} value={country.name}>
-                    {country.name}
-                  </option>
-                ))}
-              </select>
-              {formErrors.nationality && (
-                <p className="text-red-500 text-sm">{formErrors.nationality}</p>
-              )}
-            </div>
+          <div>
+            <label className="block font-bold uppercase">
+              Nationality
+            </label>
+            <select
+              name="nationality"
+              value={formData.nationality}
+              onChange={handleChange}
+              className="w-full border-dashed border-[#A9B8D5] border focus:outline-none p-2"
+            >
+              <option value="">Select a country</option>
+              {countries.map((country) => (
+                <option key={country.isoCode} value={country.name}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+            {formErrors.nationality && (
+              <p className="text-red-500 text-sm">{formErrors.nationality}</p>
+            )}
+          </div>
           <div>
             <label className="text-sm font-semibold mb-1 block">
               EMAIL ADDRESS
             </label>
             <input
               type="email"
-              className={`w-full border ${
-                formErrors.email
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.email
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -454,19 +448,18 @@ export default function ApplicationForm() {
         </div>
 
         {/* Row 3 */}
-      {/* Row 3 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Row 3 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="text-sm font-semibold mb-1 block">
-              PHONE NUMBER 
+              PHONE NUMBER
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.phone
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.phone
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.phone}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
@@ -482,11 +475,10 @@ export default function ApplicationForm() {
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.city
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.city
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.city}
               onChange={(e) =>
                 setFormData({ ...formData, city: e.target.value })
@@ -497,25 +489,25 @@ export default function ApplicationForm() {
             )}
           </div>
           <div>
-              <label className="block font-bold uppercase">State</label>
-              <select
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className="w-full border-dashed border-[#A9B8D5] border focus:outline-none p-2"
-                disabled={!states.length}
-              >
-                <option value="">Select a state</option>
-                {states.map((state) => (
-                  <option key={state.isoCode} value={state.name}>
-                    {state.name}
-                  </option>
-                ))}
-              </select>
-              {formErrors.state && (
-                <p className="text-red-500 text-sm">{formErrors.state}</p>
-              )}
-            </div>
+            <label className="block font-bold uppercase">State</label>
+            <select
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              className="w-full border-dashed border-[#A9B8D5] border focus:outline-none p-2"
+              disabled={!states.length}
+            >
+              <option value="">Select a state</option>
+              {states.map((state) => (
+                <option key={state.isoCode} value={state.name}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+            {formErrors.state && (
+              <p className="text-red-500 text-sm">{formErrors.state}</p>
+            )}
+          </div>
         </div>
 
         {/* Row 4 */}
@@ -533,11 +525,10 @@ export default function ApplicationForm() {
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.institution
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.institution
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.institution}
               onChange={(e) =>
                 setFormData({ ...formData, institution: e.target.value })
@@ -553,11 +544,10 @@ export default function ApplicationForm() {
             </label>
             <input
               type="text"
-              className={`w-full border ${
-                formErrors.graduationYear
-                  ? "border-red-500"
-                  : "border-dashed border-[#A9B8D5] focus:outline-none"
-              } p-2`}
+              className={`w-full border ${formErrors.graduationYear
+                ? "border-red-500"
+                : "border-dashed border-[#A9B8D5] focus:outline-none"
+                } p-2`}
               value={formData.graduationYear}
               onChange={(e) =>
                 setFormData({ ...formData, graduationYear: e.target.value })
