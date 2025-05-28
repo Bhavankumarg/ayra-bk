@@ -95,50 +95,62 @@ const NavBar = () => {
     ];
 
     const renderSubmenu = (items, level = 0, parentIndex = null, parentName = null) => {
-        return items.map((item, index) => (
-            <div key={index} className={`${level > 0 ? 'pl-4' : ''}`}>
-                {typeof item === 'string' ? (
-                    <Link
-                        href={
-                            parentName === 'Open Canvas'
-                                ? `/opencanvas/${item.toLowerCase().replace(/\s+/g, '-')}`
-                                : parentName === 'Admissions'
-                                    ? `/admissions/${item.toLowerCase().replace(/\s+/g, '-')}`
-                                    : `/${item.toLowerCase().replace(/\s+/g, '-')}`
-                        }
-                        className="block px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
-                        onClick={() => {
-                            if (isMobile) {
-                                setIsMobileMenuOpen(false);
-                                setActiveSubmenu(null);
-                            }
-                        }}
-                    >
-                        {item}
-                    </Link>
-                ) : (
-                    <>
-                        <button
+        return items.map((item, index) => {
+            let href = '';
+            if (typeof item === 'string') {
+                if (parentName === 'Open Canvas') {
+                    href = `/opencanvas/${item.toLowerCase().replace(/\s+/g, '-')}`;
+                } else if (parentName === 'Admissions') {
+                    if (item === "Bachelor's Program") {
+                        href = '/admissions/bachelors-programs';
+                    } else if (item === "Master's Program") {
+                        href = '/admissions/masters-programs';
+                    } else {
+                        href = `/admissions/${item.toLowerCase().replace(/\s+/g, '-')}`;
+                    }
+                } else {
+                    href = `/${item.toLowerCase().replace(/\s+/g, '-')}`;
+                }
+            }
+            return (
+                <div key={index} className={`${level > 0 ? 'pl-4' : ''}`}>
+                    {typeof item === 'string' ? (
+                        <Link
+                            href={href}
+                            className="block px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
                             onClick={() => {
-                                const newIndex = parentIndex !== null ? `${parentIndex}-${index}` : index;
-                                setActiveSubmenu(activeSubmenu === newIndex ? null : newIndex);
+                                if (isMobile) {
+                                    setIsMobileMenuOpen(false);
+                                    setActiveSubmenu(null);
+                                }
                             }}
-                            className="w-full text-left px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center justify-between"
                         >
-                            {item.name}
-                            <span className={`transform transition-transform ${activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) ? 'rotate-180' : ''}`}>
-                                ▼
-                            </span>
-                        </button>
-                        {activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) && (
-                            <div className="bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C]">
-                                {renderSubmenu(item.submenu, level + 1, index, item.name)}
-                            </div>
-                        )}
-                    </>
-                )}
-            </div>
-        ));
+                            {item}
+                        </Link>
+                    ) : (
+                        <>
+                            <button
+                                onClick={() => {
+                                    const newIndex = parentIndex !== null ? `${parentIndex}-${index}` : index;
+                                    setActiveSubmenu(activeSubmenu === newIndex ? null : newIndex);
+                                }}
+                                className="w-full text-left px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal flex items-center justify-between"
+                            >
+                                {item.name}
+                                <span className={`transform transition-transform ${activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) ? 'rotate-180' : ''}`}>
+                                    ▼
+                                </span>
+                            </button>
+                            {activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) && (
+                                <div className="bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C]">
+                                    {renderSubmenu(item.submenu, level + 1, index, item.name)}
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
+            );
+        });
     };
 
     return (
