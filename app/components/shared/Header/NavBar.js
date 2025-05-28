@@ -172,7 +172,7 @@ const NavBar = () => {
                             alt="AYRA Logo"
                             width={120}
                             height={40}
-                            className='h-full w-full'
+                            className='h-full w-full lg:px-7'
                         />
                     </Link>
                 </div>
