@@ -94,12 +94,16 @@ const NavBar = () => {
         'Contact us'
     ];
 
-    const renderSubmenu = (items, level = 0, parentIndex = null) => {
+    const renderSubmenu = (items, level = 0, parentIndex = null, parentName = null) => {
         return items.map((item, index) => (
             <div key={index} className={`${level > 0 ? 'pl-4' : ''}`}>
                 {typeof item === 'string' ? (
                     <Link
-                        href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                        href={
+                            parentName === 'Open Canvas'
+                                ? `/opencanvas/${item.toLowerCase().replace(/\s+/g, '-')}`
+                                : `/${item.toLowerCase().replace(/\s+/g, '-')}`
+                        }
                         className="block px-4 py-2 hover:bg-white/10 transition-colors text-[14px] 2xl:text-[18px] leading-[27px] font-normal"
                         onClick={() => {
                             if (isMobile) {
@@ -126,7 +130,7 @@ const NavBar = () => {
                         </button>
                         {activeSubmenu === (parentIndex !== null ? `${parentIndex}-${index}` : index) && (
                             <div className="bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C]">
-                                {renderSubmenu(item.submenu, level + 1, index)}
+                                {renderSubmenu(item.submenu, level + 1, index, item.name)}
                             </div>
                         )}
                     </>
@@ -202,7 +206,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className='lg:px-16 py-2 h-1/2 flex items-center'>
-                        <ul className="flex space-x-8 flex flex-row justify-between items-center h-full">
+                        <ul className=" space-x-8 flex flex-row justify-between items-center h-full">
                             {menuItems.map((item, index) => (
                                 <li
                                     key={index}
@@ -210,12 +214,18 @@ const NavBar = () => {
                                     onMouseEnter={() => setActiveSubmenu(index)}
                                     onMouseLeave={() => setActiveSubmenu(null)}
                                 >
-                                    <button className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full">
-                                        {item.name}
-                                    </button>
+                                    {item.name === 'Open Canvas' ? (
+                                        <span className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full cursor-default">
+                                            {item.name}
+                                        </span>
+                                    ) : (
+                                        <button className="hover:text-gray-300 transition-colors text-[16px] 2xl:text-[18px] leading-[27px] font-normal flex items-center h-full">
+                                            {item.name}
+                                        </button>
+                                    )}
                                     {activeSubmenu === index && (
                                         <div className="absolute top-full left-0 w-48 bg-[#002561] rounded-md shadow-[0_3px_8px_#0000005C] py-2 z-50">
-                                            {renderSubmenu(item.submenu)}
+                                            {renderSubmenu(item.submenu, 0, index, item.name)}
                                         </div>
                                     )}
                                 </li>
@@ -301,7 +311,7 @@ const NavBar = () => {
                                     </button>
                                     {activeSubmenu === index && (
                                         <div className="pl-4 mt-2 space-y-2">
-                                            {renderSubmenu(item.submenu, 1, index)}
+                                            {renderSubmenu(item.submenu, 1, index, item.name)}
                                         </div>
                                     )}
                                 </div>
