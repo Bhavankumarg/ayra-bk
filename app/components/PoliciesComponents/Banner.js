@@ -3,15 +3,15 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="bg-[url('/policies/policies-banner.png')] h-[90vh] bg-cover bg-center text-white relative">
+    <div className="bg-[url('/policies/policies-mobile-banner.png')] lg:bg-[url('/policies/policies-banner.png')] lg:h-[90vh] h-screen bg-cover bg-center text-white relative">
       {/* Rotated tagline in custom position */}
-      <div className="absolute bottom-[15%] left-[13%] rotate-[-12deg]">
+      <div className="absolute lg:bottom-[15%] bottom-64 lg:left-[13%] left-[20%] rotate-[-12deg]">
         <p className="text-base font-light opacity-90">
           Upholding Integrity. Enabling Impact.
         </p>
       </div>
       {/* Centered paragraph at bottom */}
-      <div className="absolute lg:bottom-16 bottom-0 text-center lg:px-4 lg:left-[55%] lg:p-0 p-4 transform">
+      <div className="absolute lg:bottom-16 -bottom-5 text-center lg:px-4 lg:left-[55%] lg:p-0 p-4 transform">
         <p className="text-base font-light text-start mx-auto opacity-90 lg:pe-10">
           At AYRA, research is a cornerstone of our academic vision— a way to
           question deeply, explore responsibly, and contribute meaningfully to

@@ -14,8 +14,8 @@ const CorePrinciple = () => {
         <div className=" pb-10 pt-4">
           {CorePrinciplesData.map((item, index) => (
             <div key={index}>
-              <ul className="">
-                <li className="flex items-start gap-3">
+              <ul className=""> 
+                <li className="flex items-start gap-3 py-2">
                   <Image
                     src="/rocket-icon.svg"
                     alt="Bullet Icon"
@@ -23,9 +23,11 @@ const CorePrinciple = () => {
                     height={16}
                     className="mt-1 rotate-[50deg]"
                   />
-                  <div className="flex gap-1">
-                  <h5 className="font-extrabold">{item.title}</h5>
-                  <p className="text-gray-700">{item.description}</p>
+                  <div className="flex lg:gap-1">
+                  <div>
+                  <span className="font-extrabold">{item.title}</span>
+                  <span className="text-gray-700">{item.description}</span>
+                  </div>
                   </div>
                 </li>
               </ul>
