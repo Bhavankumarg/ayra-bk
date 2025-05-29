@@ -70,7 +70,7 @@ const KeyPolicyAreas = () => {
                 >
                   <div className="flex lg:flex-row flex-col container mx-auto py-8 justify-between gap-10">
                     {/* Image Block */}
-                    <div className="lg:w-1/2">
+                    <div className=" flex justify-center items-center">
                       {item.image && (
                         <Image
                           src={item.image}
@@ -78,7 +78,7 @@ const KeyPolicyAreas = () => {
                           layout="responsive"
                           width={900}
                           height={600}
-                          className="lg:w-[900px] h-auto object-cover lg:px-0 px-10"
+                          className=" h-auto object-cover lg:w-1/2 lg:mt-0 mt-52 w-[80%]"
                         />
                       )}
                     </div>
