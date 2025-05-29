@@ -6,7 +6,7 @@ const Banner = () => {
     <div>
       <div className="bg-[url('/policies/policies-mobile-banner.png')] lg:bg-[url('/policies/policies-banner.png')] lg:h-[90vh] h-screen bg-cover bg-center text-white relative">
       {/* Rotated tagline in custom position */}
-      <div className="absolute lg:bottom-[15%] bottom-52 lg:left-[13%] left-[20%] rotate-[-12deg]">
+      <div className="absolute lg:bottom-[15%] bottom-56 lg:left-[13%] left-[20%] rotate-[-12deg]">
         <p className="text-base font-light opacity-90">
           Upholding Integrity. Enabling Impact.
         </p>
